@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521DF365235AAD8A005839BB /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DF364235AAD8A005839BB /* Car.swift */; };
+		521DF367235AAD91005839BB /* GrandPrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DF366235AAD91005839BB /* GrandPrix.swift */; };
+		521DF369235AAD99005839BB /* Moto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DF368235AAD99005839BB /* Moto.swift */; };
+		521DF36B235AADA1005839BB /* Rally.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DF36A235AADA1005839BB /* Rally.swift */; };
+		521DF36E235AADB7005839BB /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DF36D235AADB7005839BB /* Vehicle.swift */; };
 		526F7265235AAAFF0001BC5A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F7264235AAAFF0001BC5A /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		521DF364235AAD8A005839BB /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		521DF366235AAD91005839BB /* GrandPrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrandPrix.swift; sourceTree = "<group>"; };
+		521DF368235AAD99005839BB /* Moto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moto.swift; sourceTree = "<group>"; };
+		521DF36A235AADA1005839BB /* Rally.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rally.swift; sourceTree = "<group>"; };
+		521DF36D235AADB7005839BB /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		526F7261235AAAFF0001BC5A /* Rally */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Rally; sourceTree = BUILT_PRODUCTS_DIR; };
 		526F7264235AAAFF0001BC5A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +67,11 @@
 		526F7263235AAAFF0001BC5A /* Rally */ = {
 			isa = PBXGroup;
 			children = (
+				521DF36D235AADB7005839BB /* Vehicle.swift */,
+				521DF36A235AADA1005839BB /* Rally.swift */,
+				521DF368235AAD99005839BB /* Moto.swift */,
+				521DF366235AAD91005839BB /* GrandPrix.swift */,
+				521DF364235AAD8A005839BB /* Car.swift */,
 				526F7264235AAAFF0001BC5A /* main.swift */,
 			);
 			path = Rally;
@@ -119,6 +134,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521DF36E235AADB7005839BB /* Vehicle.swift in Sources */,
+				521DF369235AAD99005839BB /* Moto.swift in Sources */,
+				521DF367235AAD91005839BB /* GrandPrix.swift in Sources */,
+				521DF365235AAD8A005839BB /* Car.swift in Sources */,
+				521DF36B235AADA1005839BB /* Rally.swift in Sources */,
 				526F7265235AAAFF0001BC5A /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
