@@ -21,7 +21,5 @@ print("2. Add a vehicle to the existing list of Vehicles")
 //opt = Int(readLine()!);
 //
 //print(opt)
-
-
 //let test = Moto(name:"Ferrarri",maxSpeed:35,weight: 3000,fuel: 45,sidecar: false)
 //test.displayVehicle()
