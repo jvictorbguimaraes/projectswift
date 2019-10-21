@@ -9,5 +9,6 @@ class Moto : Vehicle{
     func isTwoWheeled() -> Bool {
         return !sidecar
     }
+    
 }
 

@@ -1,10 +1,12 @@
 class GrandPrix : Rally {
     var length: Int
     var vehicles: Array<Vehicle>
+    var raceVehicles: Array<Vehicle>
     
     init(length: Int){
         self.length = length
         vehicles = Array<Vehicle>()
+        raceVehicles = Array<Vehicle>()
     }
     
     func add(vehicle: Vehicle) {

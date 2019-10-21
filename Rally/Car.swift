@@ -5,5 +5,9 @@ class Car : Vehicle{
         self.category = category
         super.init(name: name, maxSpeed: maxSpeed, weight: weight, fuel: fuel)
     }
+    
+    func getCategory() -> Int{
+        return category
+    }
 }
 
