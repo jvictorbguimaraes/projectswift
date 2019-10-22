@@ -1,11 +1,14 @@
+import Foundation
+
 class Vehicle {
     
     //declaring variables
     var name: String
     var maxSpeed: Double
     var weight: Int
-    var fuel: Int
+    var fuel: Double
     var travelledDist: Double
+    var horsePower: Double
     
     //default initializer
     init() {
@@ -14,15 +17,17 @@ class Vehicle {
         self.weight = 1000
         self.fuel = 0
         self.travelledDist = 0
+        self.horsePower = 0
     }
     
     //parameterized initializer
-    init(name: String, maxSpeed: Double, weight: Int, fuel: Int) {
+    init(name: String, maxSpeed: Double, weight: Int, fuel: Double) {
         self.name = name
         self.maxSpeed = maxSpeed
         self.weight = weight
         self.fuel = fuel
         self.travelledDist = 0
+        self.horsePower = 0
     }
     
     //getters
@@ -35,7 +40,7 @@ class Vehicle {
     func getWeight() -> Int{
         return weight
     }
-    func getFuel() -> Int{
+    func getFuel() -> Double{
         return fuel
     }
     func getTravelledDist() -> Double{
@@ -46,22 +51,26 @@ class Vehicle {
     func setName(name: String){
         self.name = name
     }
-    func getMaxSpeed(maxSpeed: Double){
+    func setMaxSpeed(maxSpeed: Double){
         self.maxSpeed = maxSpeed
     }
-    func getWeight(weight: Int){
+    func setWeight(weight: Int){
         self.weight = weight
     }
-    func getFuel(fuel: Int){
+    func setFuel(fuel: Double){
         self.fuel = fuel
     }
-    func getTravelledDist(travelledDist: Double){
+    func setTravelledDist(travelledDist: Double){
         self.travelledDist = travelledDist
     }
     
     //function to display the vehicle details
     func displayVehicle(){
         print("\(name) -> \(maxSpeed)km/h, weight = \(weight)kg")
+    }
+    
+    func displayRaceDetails(){
+        print("\(name) -> Distance Travelled: \(travelledDist)m, Fuel: \(fuel)")
     }
     
     //function to check if this instance has better performance than the other vehicle
@@ -78,9 +87,30 @@ class Vehicle {
     
     //tool to check performance of the car
     func performance(maxSpeed: Double, weight: Int) -> Double {
-        let ratio = maxSpeed / Double(weight)
+        //let ratio = maxSpeed / Double(weight)
         //let estimation = "The vehicle performance is: \(ratio)"
+        
+        let f = GrandPrix()
+        
+        let w = f.kgtolbs(kg: weight)
+        let s = f.kmtoMiles(km: maxSpeed)
+        let hp = w * pow((s / 234),3.0)
+        
+        let ratio = hp / w
+        
+        
         return ratio
+    }
+    
+    //On average, a vehicle about 0.4 pounds of fuel per hour for each unit of horsepower.
+    func calculateConsumption(time: Int) {
+        let consumption = fuel - ((horsePower * 0.4) / 2.2) * 0.16
+        
+        if consumption < 0 {
+            fuel = 0
+        }else {
+            fuel = consumption
+        }
     }
 }
 
