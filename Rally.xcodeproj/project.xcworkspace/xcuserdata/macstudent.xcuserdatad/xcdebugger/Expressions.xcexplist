@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GrandPrix.race(length:):GrandPrix.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vehicle.travelledDist">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vehicle.calculateConsumption(time:):Vehicle.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "((horsePower * 0.4) / 2.2)">
+            </PersistentString>
+            <PersistentString
+               value = "((horsePower * 0.4) / 2.2) * 0.16">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
