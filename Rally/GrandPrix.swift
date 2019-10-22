@@ -75,7 +75,7 @@ class GrandPrix : Rally {
             print("------ Checkpoint \(count) -----")
             for vehicle in raceVehicles {
                 if vehicle.fuel > 0 {
-                    vehicle.travelledDist = vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
+                    vehicle.travelledDist += vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
                     vehicle.calculateConsumption(time: checkPoint)
                 }                
                 print(vehicle.displayRaceDetails())
@@ -83,6 +83,8 @@ class GrandPrix : Rally {
             distanceTravelled += checkPoint
             count += 1
         }
+        
+        print("------ Finish -----")
         
         for vehicle in raceVehicles {
             if(vehicle.fuel > 0){
@@ -93,13 +95,17 @@ class GrandPrix : Rally {
             }
         }
         
-        for vehicle in finishedVehicles {
-            if(vehicle === winner){
-                print("\(vehicle.displayRaceDetails()) won the race")
-            }else{
-                print("\(vehicle.displayRaceDetails()) finished the race")
+        if(finishedVehicles.count > 0){
+            for vehicle in finishedVehicles {
+                if(vehicle === winner){
+                    print("\(vehicle.displayRaceDetails()) won the race")
+                }else{
+                    print("\(vehicle.displayRaceDetails()) finished the race")
+                }
             }
-        }
+        } else{
+            print("All vehicles failed to finish the rally")
+        }        
     }
     
     func kmtoMiles(km:Double) -> Double

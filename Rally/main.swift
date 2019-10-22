@@ -25,8 +25,11 @@ var grandPrix = GrandPrix()
 //adding a few default vehicles
 var vehiclesList = Array<Vehicle>()
 let v1 = Car(name: "Ferrari", maxSpeed: 300, weight: 800, fuel: 45, category: "sports")
+v1.performance(maxSpeed: 300, weight: 800)
 let v2 = Car(name: "Mustang", maxSpeed: 250, weight: 600, fuel: 50, category: "sports")
+v2.performance(maxSpeed: 250, weight: 600)
 let v3 = Car(name: "Lamborghini", maxSpeed: 280, weight: 870, fuel: 44, category: "sports")
+v3.performance(maxSpeed: 280, weight: 870)
 vehiclesList.append(v1)
 vehiclesList.append(v2)
 vehiclesList.append(v3)
@@ -43,7 +46,8 @@ repeat{
     option1 = Int (opt1!)!
 
     if option1 == 1{
-        grandPrix.race(length: 60)
+        grandPrix.raceVehicles = vehiclesList
+        grandPrix.race(length: 20)
         
     }
     else if option1 == 2{
