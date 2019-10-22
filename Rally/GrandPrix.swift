@@ -37,9 +37,16 @@ class GrandPrix : Rally {
         vehicles.append(vehicle)
     }
     
+    func addToRace(vehicle: Vehicle) {
+        if(!raceVehicles.contains(where: {$0.name == vehicle.name})){
+            raceVehicles.append(vehicle)
+        }else{
+            print("Vehicle already in the race")
+        }
+    }
+    
     // function to reset the values for a new race
-    func newRace(raceLength: Int){
-        vehicles.append(contentsOf: raceVehicles)
+    func newRace(){
         raceVehicles = Array<Vehicle>()
     }
     
@@ -48,15 +55,15 @@ class GrandPrix : Rally {
         var twoWheeled: Bool = false
         for (index, vehicle) in vehicles.enumerated(){
             if index == 0{
-                if vehicle is Car || (vehicle as! Moto).isTwoWheeled(){
-                    twoWheeled = true
-                }else{
+                if vehicle is Car || !(vehicle as! Moto).isTwoWheeled(){
                     twoWheeled = false
+                }else{
+                    twoWheeled = true
                 }
             }else{
                 if (vehicle is Car || !(vehicle as! Moto).isTwoWheeled()) && twoWheeled {
                     return false
-                }else if (vehicle as! Moto).isTwoWheeled() && !twoWheeled{
+                }else if vehicle is Moto && (vehicle as! Moto).isTwoWheeled() && !twoWheeled{
                     return false
                 }
             }
@@ -117,8 +124,32 @@ class GrandPrix : Rally {
     {
         return Double(kg) * 2.2
     }
-
     
+    //display vehicles list
+    func displayVehicles(){
+        for item in vehicles{
+            if item is Moto {
+                print((item as! Moto).displayVehicle())
+            }
+            else{
+                print((item as! Car).displayVehicle())
+            }
+        }
+    }
+
+    //display vehicles list that are not in the race
+    func displayAvailableVehicles(){
+        for (index,item) in vehicles.enumerated(){
+            if(!raceVehicles.contains(where: {$0.name == item.name})){
+                if item is Moto {
+                    print("\(index+1) -> \((item as! Moto).displayVehicle())")
+                }
+                else{
+                    print("\(index+1) -> \((item as! Car).displayVehicle())")
+                }
+            }
+        }
+    }
 }
 
 

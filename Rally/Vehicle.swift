@@ -64,8 +64,12 @@ class Vehicle {
         self.travelledDist = travelledDist
     }
     
+    func displayVehicle() -> String{
+        return ("\(name), Max Speed: \(maxSpeed)km/h, Weight: \(weight)kg")
+    }
+    
     func displayRaceDetails() -> String{
-        return ("\(name) -> Distance Travelled: \(travelledDist.rounded())m, Fuel: \(fuel.rounded())")
+        return ("\(name) -> Distance Travelled: \((travelledDist/1000).rounded())km, Fuel Left: \(fuel.rounded())l")
     }
     
     //function to check if this instance has better performance than the other vehicle

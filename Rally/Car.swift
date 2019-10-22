@@ -22,8 +22,8 @@ class Car : Vehicle{
     }
     
     //function to display the vehicle details
-    func displayVehicle(){
-        print("\(name) -> \(maxSpeed)km/h, weight = \(weight)kg, category->\(category)")
+    override func displayVehicle() -> String{
+        return ("\(name), Max Speed: \(maxSpeed)km/h, Weight: \(weight)kg, Category: \(category)")
     }
 }
 

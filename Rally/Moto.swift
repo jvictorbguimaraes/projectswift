@@ -25,9 +25,10 @@ class Moto : Vehicle{
     func isTwoWheeled() -> Bool {
         return !sidecar
     }
+    
     //function to display the vehicle details
-    func displayVehicle(){
-        print("\(name) -> \(maxSpeed)km/h, weight = \(weight)kg, sidecar ->\(sidecar)")
+    override func displayVehicle() -> String{
+        return ("\(name), Max Speed: \(maxSpeed)km/h, Weight: \(weight)kg, Sidecar: \(sidecar)")
     }
 }
 
