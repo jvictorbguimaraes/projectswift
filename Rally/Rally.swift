@@ -1,8 +1,5 @@
-class Rally {
-    
-    func check() -> Bool {
-        return false
-    }
+protocol Rally {    
+    func check() -> Bool 
 }
 
 

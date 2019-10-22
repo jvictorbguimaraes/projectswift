@@ -3,6 +3,7 @@ class Vehicle {
     var maxSpeed: Double
     var weight: Int
     var fuel: Int
+    var travelledDist: Double
     
     //default initializer
     init() {
@@ -10,6 +11,7 @@ class Vehicle {
         self.maxSpeed = 130
         self.weight = 1000
         self.fuel = 0
+        self.travelledDist = 0
     }
     
     //parameterized initializer
@@ -18,6 +20,7 @@ class Vehicle {
         self.maxSpeed = maxSpeed
         self.weight = weight
         self.fuel = fuel
+        self.travelledDist = 0
     }
     
     //getters
