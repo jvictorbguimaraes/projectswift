@@ -101,6 +101,18 @@ class GrandPrix : Rally {
             }
         }
     }
+    
+    func kmtoMiles(km:Double) -> Double
+    {
+        return Double(km) * 0.621
+    }
+    
+    func kgtolbs(kg:Int) -> Double
+    {
+        return Double(kg) * 2.2
+    }
+
+    
 }
 
 

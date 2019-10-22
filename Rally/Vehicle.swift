@@ -1,3 +1,5 @@
+import Foundation
+
 class Vehicle {
     
     //declaring variables
@@ -85,9 +87,16 @@ class Vehicle {
     
     //tool to check performance of the car
     func performance(maxSpeed: Double, weight: Int) -> Double {
-        let ratio = maxSpeed / Double(weight)
+        //let ratio = maxSpeed / Double(weight)
         //let estimation = "The vehicle performance is: \(ratio)"
         
+        let f = GrandPrix()
+        
+        let w = f.kgtolbs(kg: weight)
+        let s = f.kmtoMiles(km: maxSpeed)
+        let hp = w * pow((s / 234),3.0)
+        
+        let ratio = hp / w
         
         
         return ratio
