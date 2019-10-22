@@ -17,7 +17,7 @@ class GrandPrix : Rally {
     func getVehicles() -> Array<Vehicle>{
         return vehicles
     }
-    func getraceVehicles() -> Array<Vehicle>{
+    func getRaceVehicles() -> Array<Vehicle>{
         return raceVehicles
     }
     

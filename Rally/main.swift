@@ -22,13 +22,23 @@ var category: String?
 var sidecar: Bool?
 var grandPrix = GrandPrix()
 
+//adding a few default vehicles
+var vehiclesList = Array<Vehicle>()
+let v1 = Car(name: "Ferrari", maxSpeed: 300, weight: 800, fuel: 45, category: "sports")
+let v2 = Car(name: "Mustang", maxSpeed: 250, weight: 600, fuel: 50, category: "sports")
+let v3 = Car(name: "Lamborghini", maxSpeed: 280, weight: 870, fuel: 44, category: "sports")
+vehiclesList.append(v1)
+vehiclesList.append(v2)
+vehiclesList.append(v3)
+
 //display option menu
 repeat{
     print("Welcome to Grand Prix")
     print("Select a option to proceed")
     print("1. Choose a car/motorcycle for racing")
     print("2. Add a vehicle to the existing list of Vehicles")
-    print("3. Exit")
+    print("3. Display vehicle list")
+    print("4. Exit")
     let opt1:String? = readLine()
     option1 = Int (opt1!)!
 
@@ -75,16 +85,21 @@ repeat{
         //Asdding the vehicle to the vehicle list
         let vehicle = Car(name:name!,maxSpeed: maxSpeed!,weight: weight!,fuel:fuel!,category: category!)
         grandPrix.add(vehicle: vehicle)
+        
+    }
+    else if option2 == 3{
+        //display vehicles list 
         for val in grandPrix.getVehicles(){
             print(val.displayVehicle())
         }
     }
     else{
         print("Grand Prix Ended")
-        end = 3
+        end = 4
     }
     
-}while end != 3
+}while end != 4
+
 
 
 
