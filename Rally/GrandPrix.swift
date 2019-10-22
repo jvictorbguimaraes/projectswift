@@ -72,12 +72,12 @@ class GrandPrix : Rally {
         var count = 1
         
         while(distanceTravelled < length){
+            print("------ Checkpoint \(count) -----")
             for vehicle in raceVehicles {
                 if vehicle.fuel > 0 {
                     vehicle.travelledDist = vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
                     vehicle.calculateConsumption(time: checkPoint)
-                }
-                print("------ Checkpoint \(count) -----")
+                }                
                 print(vehicle.displayRaceDetails())
             }
             distanceTravelled += checkPoint
