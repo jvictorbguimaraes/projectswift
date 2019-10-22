@@ -1,14 +1,24 @@
 class Car : Vehicle{
-    var category: Int
+    var category: String
     
-    init(name: String, maxSpeed: Double, weight: Int, fuel: Int, category: Int) {
+    override init() {
+        self.category = "Race Car"
+        super.init()
+    }
+    
+    init(name: String, maxSpeed: Double, weight: Int, fuel: Int, category: String) {
         self.category = category
         super.init(name: name, maxSpeed: maxSpeed, weight: weight, fuel: fuel)
     }
     
-    // function that returns the category of the vehicle
-    func getCategory() -> Int{
+    //getters
+    func getCategory() -> String{
         return category
+    }
+    
+    //setters
+    func setCategory(category: String){
+        self.category = category
     }
 }
 

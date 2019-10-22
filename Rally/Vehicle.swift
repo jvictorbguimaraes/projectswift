@@ -1,4 +1,6 @@
 class Vehicle {
+    
+    //declaring variables
     var name: String
     var maxSpeed: Double
     var weight: Int
@@ -27,6 +29,35 @@ class Vehicle {
     func getName() -> String{
         return name
     }
+    func getMaxSpeed() -> Double{
+        return maxSpeed
+    }
+    func getWeight() -> Int{
+        return weight
+    }
+    func getFuel() -> Int{
+        return fuel
+    }
+    func getTravelledDist() -> Double{
+        return travelledDist
+    }
+    
+    //setters
+    func setName(name: String){
+        self.name = name
+    }
+    func getMaxSpeed(maxSpeed: Double){
+        self.maxSpeed = maxSpeed
+    }
+    func getWeight(weight: Int){
+        self.weight = weight
+    }
+    func getFuel(fuel: Int){
+        self.fuel = fuel
+    }
+    func getTravelledDist(travelledDist: Double){
+        self.travelledDist = travelledDist
+    }
     
     //function to display the vehicle details
     func displayVehicle(){
@@ -34,8 +65,15 @@ class Vehicle {
     }
     
     //function to check if this instance has better performance than the other vehicle
-    func better(){
-        
+    func better() -> Bool{
+        let pef: Bool?
+        pef = true
+        if(pef! == true){
+            return true
+        }
+        else{
+            return false
+        }
     }
     
     //tool to check performance of the car

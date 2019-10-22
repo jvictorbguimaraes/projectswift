@@ -4,10 +4,32 @@ class GrandPrix : Rally {
     var raceVehicles: Array<Vehicle>
     final let turnValue = 10
     
-    init(length: Int){
+    init(){
+        self.length = 10
+        self.vehicles = Array<Vehicle>()
+        self.raceVehicles = Array<Vehicle>()
+    }
+    
+    //getters
+    func getLength() -> Int{
+        return length
+    }
+    func getVehicles() -> Array<Vehicle>{
+        return vehicles
+    }
+    func getraceVehicles() -> Array<Vehicle>{
+        return raceVehicles
+    }
+    
+    //setters
+    func setLength(length: Int){
         self.length = length
-        vehicles = Array<Vehicle>()
-        raceVehicles = Array<Vehicle>()
+    }
+    func setVehicles(vehicles: Array<Vehicle>){
+        self.vehicles = vehicles
+    }
+    func setRaceVehicles(raceVehicles: Array<Vehicle>){
+        self.raceVehicles = raceVehicles
     }
     
     // function to add the vehicles in the race
