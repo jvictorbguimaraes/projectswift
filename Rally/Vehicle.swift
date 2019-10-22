@@ -64,11 +64,6 @@ class Vehicle {
         self.travelledDist = travelledDist
     }
     
-    //function to display the vehicle details
-    func displayVehicle(){
-        print("\(name) -> \(maxSpeed)km/h, weight = \(weight)kg")
-    }
-    
     func displayRaceDetails(){
         print("\(name) -> Distance Travelled: \(travelledDist.rounded())m, Fuel: \(fuel.rounded())")
     }

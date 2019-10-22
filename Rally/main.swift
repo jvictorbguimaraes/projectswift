@@ -30,9 +30,12 @@ let v3 = Car(name: "Lamborghini", maxSpeed: 280, weight: 870, fuel: 44, category
 vehiclesList.append(v1)
 vehiclesList.append(v2)
 vehiclesList.append(v3)
+grandPrix.setVehicles(vehicles: vehiclesList)
 
 //display option menu
 repeat{
+    print("------------------")
+    print()
     print("Welcome to Grand Prix")
     print("Select a option to proceed")
     print("1. Choose a car/motorcycle for racing")
@@ -43,7 +46,14 @@ repeat{
     option1 = Int (opt1!)!
 
     if option1 == 1{
-        grandPrix.race(length: 60)
+        grandPrix.race(length: 100)
+        let stop = Int(readLine()!)!
+        for var stop in 0...stop{
+            var choices = String(readLine()!)
+            stop += 1
+            
+            if
+        }
         
     }
     else if option1 == 2{
@@ -87,10 +97,15 @@ repeat{
         grandPrix.add(vehicle: vehicle)
         
     }
-    else if option2 == 3{
+    else if option1 == 3{
         //display vehicles list 
         for val in grandPrix.getVehicles(){
-            print(val.displayVehicle())
+            if val is Moto {
+                (val as! Moto).displayVehicle()
+            }
+            else{
+                (val as! Car).displayVehicle()
+            }
         }
     }
     else{

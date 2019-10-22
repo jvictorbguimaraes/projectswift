@@ -20,5 +20,10 @@ class Car : Vehicle{
     func setCategory(category: String){
         self.category = category
     }
+    
+    //function to display the vehicle details
+    func displayVehicle(){
+        print("\(name) -> \(maxSpeed)km/h, weight = \(weight)kg, category->\(category)")
+    }
 }
 
