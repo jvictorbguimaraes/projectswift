@@ -6,7 +6,7 @@ class Moto : Vehicle{
         super.init()
     }
     
-    init(name: String, maxSpeed: Double, weight: Int, fuel: Int, sidecar: Bool) {
+    init(name: String, maxSpeed: Double, weight: Int, fuel: Double, sidecar: Bool) {
         self.sidecar = sidecar
         super.init(name: name, maxSpeed: maxSpeed, weight: weight, fuel: fuel)
     }

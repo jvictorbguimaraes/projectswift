@@ -6,7 +6,7 @@ class Car : Vehicle{
         super.init()
     }
     
-    init(name: String, maxSpeed: Double, weight: Int, fuel: Int, category: String) {
+    init(name: String, maxSpeed: Double, weight: Int, fuel: Double, category: String) {
         self.category = category
         super.init(name: name, maxSpeed: maxSpeed, weight: weight, fuel: fuel)
     }

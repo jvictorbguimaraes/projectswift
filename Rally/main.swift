@@ -17,7 +17,7 @@ var end = 0
 var name: String?
 var maxSpeed: Double?
 var weight: Int?
-var fuel: Int?
+var fuel: Double?
 var category: String?
 var sidecar: Bool?
 var grandPrix = GrandPrix()
@@ -33,6 +33,7 @@ repeat{
     option1 = Int (opt1!)!
 
     if option1 == 1{
+        grandPrix.race(length: 60)
         
     }
     else if option1 == 2{
@@ -51,7 +52,7 @@ repeat{
             print("Enter Vehicle Weight: ")
             weight = Int(readLine()!)
             print("Enter Vehicle Fuel Level: ")
-            fuel = Int(readLine()!)
+            fuel = Double(readLine()!)
             print("Enter Car Category: ")
             category = readLine()
         }
@@ -63,7 +64,7 @@ repeat{
             print("Enter Vehicle Weight: ")
             weight = Int(readLine()!)
             print("Enter Vehicle Fuel Level: ")
-            fuel = Int(readLine()!)
+            fuel = Double(readLine()!)
             print("Enter if Motorcyle has sidecar(y/n): ")
             sidecar = Bool(readLine()!)
         }
