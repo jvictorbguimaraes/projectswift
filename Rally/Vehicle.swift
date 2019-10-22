@@ -70,7 +70,7 @@ class Vehicle {
     }
     
     func displayRaceDetails(){
-        print("\(name) -> Distance Travelled: \(travelledDist)m, Fuel: \(fuel)")
+        print("\(name) -> Distance Travelled: \(travelledDist.rounded())m, Fuel: \(fuel.rounded())")
     }
     
     //function to check if this instance has better performance than the other vehicle
@@ -86,7 +86,7 @@ class Vehicle {
     }
     
     //tool to check performance of the car
-    func performance(maxSpeed: Double, weight: Int) -> Double {
+    func performance(maxSpeed: Double, weight: Int) {
         //let ratio = maxSpeed / Double(weight)
         //let estimation = "The vehicle performance is: \(ratio)"
         
@@ -94,12 +94,7 @@ class Vehicle {
         
         let w = f.kgtolbs(kg: weight)
         let s = f.kmtoMiles(km: maxSpeed)
-        let hp = w * pow((s / 234),3.0)
-        
-        let ratio = hp / w
-        
-        
-        return ratio
+        horsePower = w * pow((s / 234),3.0)
     }
     
     //On average, a vehicle about 0.4 pounds of fuel per hour for each unit of horsepower.
