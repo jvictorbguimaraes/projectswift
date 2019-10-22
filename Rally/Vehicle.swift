@@ -42,6 +42,9 @@ class Vehicle {
     func performance(maxSpeed: Double, weight: Int) -> Double {
         let ratio = maxSpeed / Double(weight)
         //let estimation = "The vehicle performance is: \(ratio)"
+        
+        
+        
         return ratio
     }
 }
