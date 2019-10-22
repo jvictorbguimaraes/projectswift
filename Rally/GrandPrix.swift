@@ -2,7 +2,7 @@ class GrandPrix : Rally {
     var length: Int
     var vehicles: Array<Vehicle>
     var raceVehicles: Array<Vehicle>
-    final let turnValue = 10
+    final let checkPoint = 10
     
     init(){
         self.length = 10
@@ -66,16 +66,22 @@ class GrandPrix : Rally {
     
     // function that makes the vehicles race together. The length of the are is in minutes and each loop of the function represents how many minutes passed in the race using the variable turnValue
     func race(length:Int) {
-        var turns: Int = 0
+        var distanceTravelled: Int = 0
         var finishedVehicles = Array<Vehicle>()
-        var winner = Vehicle();
+        var winner = Vehicle()
+        var count = 1
         
-        while(turns < length){
+        while(distanceTravelled < length){
             for vehicle in raceVehicles {
-                vehicle.travelledDist = vehicle.maxSpeed * 1000 / 60 * Double(turnValue)
-                vehicle.fuel -= vehicle.fuel //add fuel consumption
+                if vehicle.fuel > 0 {
+                    vehicle.travelledDist = vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
+                    vehicle.calculateConsumption(time: checkPoint)
+                }
+                print("------ Checkpoint \(count) -----")
+                print(vehicle.displayRaceDetails())
             }
-            turns += turnValue
+            distanceTravelled += checkPoint
+            count += 1
         }
         
         for vehicle in raceVehicles {
@@ -89,9 +95,9 @@ class GrandPrix : Rally {
         
         for vehicle in finishedVehicles {
             if(vehicle === winner){
-                print("\(vehicle.displayVehicle()) won the race")
+                print("\(vehicle.displayRaceDetails()) won the race")
             }else{
-                print("\(vehicle.displayVehicle()) finished the race")
+                print("\(vehicle.displayRaceDetails()) finished the race")
             }
         }
     }
