@@ -112,7 +112,12 @@ raceLoop: while(true){
             grandPrix.add(vehicle: vehicle)
         
         case 2:
-            grandPrix.displayVehicles()
+            if grandPrix.raceVehicles.count == 0{
+                print("No vehicle in the race")
+            }
+            else{
+                grandPrix.displayVehicles()
+            }
         case 3:
             grandPrix.displayRaceVehicles()
         case 4:
@@ -124,9 +129,6 @@ raceLoop: while(true){
             }else{
                 grandPrix.addToRace(vehicle: (grandPrix.vehicles[vehicleChosen-1]))
             }
-        case 4:
-            //check performance
-            break
         case 5:
             if grandPrix.raceVehicles.count < 2{
                 print("Need at least 2 vehicles in the race")
@@ -140,7 +142,7 @@ raceLoop: while(true){
             print("Choose the length of the race in minutes")
             let length = Int(readLine()!)!
             grandPrix.race(length: length)
-            grandPrix.newRace()
+            grandPrix.resetRace()
         case 6:
             print("Enter first vehicle name")
             let n1 = readLine()
