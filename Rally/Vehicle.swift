@@ -9,6 +9,7 @@ class Vehicle {
     var fuel: Double
     var travelledDist: Double
     var horsePower: Double
+    var fuelConsumed: Double
     
     //default initializer
     init() {
@@ -18,6 +19,7 @@ class Vehicle {
         self.fuel = 0
         self.travelledDist = 0
         self.horsePower = 0
+        self.fuelConsumed = 0
     }
     
     //parameterized initializer
@@ -28,6 +30,7 @@ class Vehicle {
         self.fuel = fuel
         self.travelledDist = 0
         self.horsePower = 0
+        self.fuelConsumed = 0
     }
     
     //getters
@@ -69,7 +72,7 @@ class Vehicle {
     }
     
     func displayRaceDetails() -> String{
-        return ("\(name) -> Distance Travelled: \((travelledDist/1000).rounded())km, Fuel Left: \(fuel.rounded())l")
+        return ("\(name) -> Distance Travelled: \((travelledDist/1000).rounded()) km, Fuel Left: \((fuel - fuelConsumed).rounded()) l")
     }
     
     //tool to check performance of the car
@@ -86,12 +89,12 @@ class Vehicle {
     
     //On average, a vehicle about 0.4 pounds of fuel per hour for each unit of horsepower.
     func calculateConsumption(time: Int) {
-        let consumption = fuel - ((horsePower * 0.4) / 2.2) * 0.16
+        let consumption = ((horsePower * 0.4) / 2.2) * Double(time) / 60
         
-        if consumption < 0 {
-            fuel = 0
+        if fuel - fuelConsumed - consumption < 0 {
+            fuelConsumed = fuel
         }else {
-            fuel = consumption
+            fuelConsumed += consumption
         }
     }
 }

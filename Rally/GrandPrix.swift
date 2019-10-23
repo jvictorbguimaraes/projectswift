@@ -46,14 +46,19 @@ class GrandPrix : Rally {
     }
     
     // function to reset the values for a new race
-    func newRace(){
+    func resetRace(){
         raceVehicles = Array<Vehicle>()
+        
+        for vehicle in vehicles{
+            vehicle.fuelConsumed = 0
+            vehicle.travelledDist = 0
+        }
     }
     
     // function to check if the vehicles can race together
     func check() -> Bool {
         var twoWheeled: Bool = false
-        for (index, vehicle) in vehicles.enumerated(){
+        for (index, vehicle) in raceVehicles.enumerated(){
             if index == 0{
                 if vehicle is Car || !(vehicle as! Moto).isTwoWheeled(){
                     twoWheeled = false
@@ -78,46 +83,41 @@ class GrandPrix : Rally {
         var winner = Vehicle()
         var count = 1
         
-        if raceVehicles.count == 0{
-            print("Please add vehicles in the race!")
-        }
-        else{
-            while(distanceTravelled < length){
-                print("------ Checkpoint \(count) -----")
-                for vehicle in raceVehicles {
-                    if vehicle.fuel > 0 {
-                        vehicle.travelledDist += vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
-                        vehicle.calculateConsumption(time: checkPoint)
-                    }
-                    print(vehicle.displayRaceDetails())
-                }
-                distanceTravelled += checkPoint
-                count += 1
-            }
-            
-            print("------ Finish -----")
-            
+        while(distanceTravelled < length){
+            print("------ Checkpoint \(count) -----")
             for vehicle in raceVehicles {
-                if(vehicle.fuel > 0){
-                    finishedVehicles.append(vehicle)
-                    if(vehicle.travelledDist > winner.travelledDist){
-                        winner = vehicle
-                    }
-                }
+                if vehicle.fuel - vehicle.fuelConsumed > 0 {
+                    vehicle.travelledDist += vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
+                    vehicle.calculateConsumption(time: checkPoint)
+                }                
+                print(vehicle.displayRaceDetails())
             }
-            
-            if(finishedVehicles.count > 0){
-                for vehicle in finishedVehicles {
-                    if(vehicle === winner){
-                        print("\(vehicle.displayRaceDetails()) won the race")
-                    }else{
-                        print("\(vehicle.displayRaceDetails()) finished the race")
-                    }
+            distanceTravelled += checkPoint
+            count += 1
+        }
+        
+        print("------ Finish -----")
+        
+        for vehicle in raceVehicles {
+            if(vehicle.fuel - vehicle.fuelConsumed > 0){
+                finishedVehicles.append(vehicle)
+                if(vehicle.travelledDist > winner.travelledDist){
+                    winner = vehicle
                 }
-            } else{
-                print("All vehicles failed to finish the rally")
             }
         }
+        
+        if(finishedVehicles.count > 0){
+            for vehicle in finishedVehicles {
+                if(vehicle === winner){
+                    print("\(vehicle.displayRaceDetails()) | won the race")
+                }else{
+                    print("\(vehicle.displayRaceDetails()) | finished the race")
+                }
+            }
+        } else{
+            print("All vehicles failed to finish the rally")
+        }        
     }
     
     func kmtoMiles(km:Double) -> Double
