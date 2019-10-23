@@ -46,14 +46,19 @@ class GrandPrix : Rally {
     }
     
     // function to reset the values for a new race
-    func newRace(){
+    func resetRace(){
         raceVehicles = Array<Vehicle>()
+        
+        for vehicle in vehicles{
+            vehicle.fuelConsumed = 0
+            vehicle.travelledDist = 0
+        }
     }
     
     // function to check if the vehicles can race together
     func check() -> Bool {
         var twoWheeled: Bool = false
-        for (index, vehicle) in vehicles.enumerated(){
+        for (index, vehicle) in raceVehicles.enumerated(){
             if index == 0{
                 if vehicle is Car || !(vehicle as! Moto).isTwoWheeled(){
                     twoWheeled = false
@@ -81,7 +86,7 @@ class GrandPrix : Rally {
         while(distanceTravelled < length){
             print("------ Checkpoint \(count) -----")
             for vehicle in raceVehicles {
-                if vehicle.fuel > 0 {
+                if vehicle.fuel - vehicle.fuelConsumed > 0 {
                     vehicle.travelledDist += vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
                     vehicle.calculateConsumption(time: checkPoint)
                 }                
@@ -94,7 +99,7 @@ class GrandPrix : Rally {
         print("------ Finish -----")
         
         for vehicle in raceVehicles {
-            if(vehicle.fuel > 0){
+            if(vehicle.fuel - vehicle.fuelConsumed > 0){
                 finishedVehicles.append(vehicle)
                 if(vehicle.travelledDist > winner.travelledDist){
                     winner = vehicle
@@ -105,9 +110,9 @@ class GrandPrix : Rally {
         if(finishedVehicles.count > 0){
             for vehicle in finishedVehicles {
                 if(vehicle === winner){
-                    print("\(vehicle.displayRaceDetails()) won the race")
+                    print("\(vehicle.displayRaceDetails()) | won the race")
                 }else{
-                    print("\(vehicle.displayRaceDetails()) finished the race")
+                    print("\(vehicle.displayRaceDetails()) | finished the race")
                 }
             }
         } else{
