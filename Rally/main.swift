@@ -94,11 +94,11 @@ raceLoop: while(true){
             case 2:
                 print("Enter Vehicle Name: ")
                 name = readLine()
-                print("Enter Vehicle Maximum Speed: ")
+                print("Enter Vehicle Maximum Speed (km/hr): ")
                 maxSpeed = Double(readLine()!)
-                print("Enter Vehicle Weight: ")
+                print("Enter Vehicle Weight (kg): ")
                 weight = Int(readLine()!)
-                print("Enter Vehicle Fuel Level: ")
+                print("Enter Vehicle Fuel Level (litres): ")
                 fuel = Double(readLine()!)
                 print("Enter if Motorcyle has sidecar(true/false): ")
                 sidecar = Bool(readLine()!)
@@ -110,6 +110,7 @@ raceLoop: while(true){
             
             //Adding the vehicle to the vehicle list
             grandPrix.add(vehicle: vehicle)
+            print("Vehicle added successfully to the list of available vehicles")
         
         case 2:
                 grandPrix.displayVehicles()
