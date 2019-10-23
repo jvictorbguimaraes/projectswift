@@ -170,7 +170,12 @@ class GrandPrix : Rally {
     
     //function to check if this instance has better performance than the other vehicle
     func better(v1: Vehicle, v2: Vehicle) -> Vehicle{
-        if v1.horsePower > v2.horsePower{
+        //power to weight ratio formula
+        let p1 = (Double)(v1.weight)
+        let p2 = (Double)(v2.weight)
+        print(v1.displayVehicle())
+        print(v2.displayVehicle())
+        if (v1.horsePower/p1) > (v2.horsePower/p2){
             return v1
         }
         else{
