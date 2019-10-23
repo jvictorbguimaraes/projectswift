@@ -72,18 +72,6 @@ class Vehicle {
         return ("\(name) -> Distance Travelled: \((travelledDist/1000).rounded())km, Fuel Left: \(fuel.rounded())l")
     }
     
-    //function to check if this instance has better performance than the other vehicle
-    func better() -> Bool{
-        let pef: Bool?
-        pef = true
-        if(pef! == true){
-            return true
-        }
-        else{
-            return false
-        }
-    }
-    
     //tool to check performance of the car
     func performance(maxSpeed: Double, weight: Int) {
         //let ratio = maxSpeed / Double(weight)

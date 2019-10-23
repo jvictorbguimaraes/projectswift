@@ -78,41 +78,46 @@ class GrandPrix : Rally {
         var winner = Vehicle()
         var count = 1
         
-        while(distanceTravelled < length){
-            print("------ Checkpoint \(count) -----")
+        if raceVehicles.count == 0{
+            print("Please add vehicles in the race!")
+        }
+        else{
+            while(distanceTravelled < length){
+                print("------ Checkpoint \(count) -----")
+                for vehicle in raceVehicles {
+                    if vehicle.fuel > 0 {
+                        vehicle.travelledDist += vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
+                        vehicle.calculateConsumption(time: checkPoint)
+                    }
+                    print(vehicle.displayRaceDetails())
+                }
+                distanceTravelled += checkPoint
+                count += 1
+            }
+            
+            print("------ Finish -----")
+            
             for vehicle in raceVehicles {
-                if vehicle.fuel > 0 {
-                    vehicle.travelledDist += vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
-                    vehicle.calculateConsumption(time: checkPoint)
-                }                
-                print(vehicle.displayRaceDetails())
-            }
-            distanceTravelled += checkPoint
-            count += 1
-        }
-        
-        print("------ Finish -----")
-        
-        for vehicle in raceVehicles {
-            if(vehicle.fuel > 0){
-                finishedVehicles.append(vehicle)
-                if(vehicle.travelledDist > winner.travelledDist){
-                    winner = vehicle
+                if(vehicle.fuel > 0){
+                    finishedVehicles.append(vehicle)
+                    if(vehicle.travelledDist > winner.travelledDist){
+                        winner = vehicle
+                    }
                 }
             }
-        }
-        
-        if(finishedVehicles.count > 0){
-            for vehicle in finishedVehicles {
-                if(vehicle === winner){
-                    print("\(vehicle.displayRaceDetails()) won the race")
-                }else{
-                    print("\(vehicle.displayRaceDetails()) finished the race")
+            
+            if(finishedVehicles.count > 0){
+                for vehicle in finishedVehicles {
+                    if(vehicle === winner){
+                        print("\(vehicle.displayRaceDetails()) won the race")
+                    }else{
+                        print("\(vehicle.displayRaceDetails()) finished the race")
+                    }
                 }
+            } else{
+                print("All vehicles failed to finish the rally")
             }
-        } else{
-            print("All vehicles failed to finish the rally")
-        }        
+        }
     }
     
     func kmtoMiles(km:Double) -> Double
@@ -136,6 +141,18 @@ class GrandPrix : Rally {
             }
         }
     }
+    
+    //display race vehicles list
+    func displayRaceVehicles(){
+        for item in raceVehicles{
+            if item is Moto {
+                print((item as! Moto).displayVehicle())
+            }
+            else{
+                print((item as! Car).displayVehicle())
+            }
+        }
+    }
 
     //display vehicles list that are not in the race
     func displayAvailableVehicles(){
@@ -148,6 +165,17 @@ class GrandPrix : Rally {
                     print("\(index+1) -> \((item as! Car).displayVehicle())")
                 }
             }
+        }
+    }
+    
+    //function to check if this instance has better performance than the other vehicle
+    func better(v1: Vehicle, v2: Vehicle) -> Vehicle{
+        if v1.horsePower > v2.horsePower{
+            return v1
+        }
+        else{
+            return v2
+            
         }
     }
 }
