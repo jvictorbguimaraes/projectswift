@@ -74,11 +74,11 @@ raceLoop: while(true){
             case 1:
                 print("Enter Vehicle Name: ")
                 name = readLine()
-                print("Enter Vehicle Maximum Speed: ")
+                print("Enter Vehicle Maximum Speed (km/hr): ")
                 maxSpeed = Double(readLine()!)
-                print("Enter Vehicle Weight: ")
+                print("Enter Vehicle Weight (kg): ")
                 weight = Int(readLine()!)
-                print("Enter Vehicle Fuel Level: ")
+                print("Enter Vehicle Fuel Level (litres): ")
                 fuel = Double(readLine()!)
                 var chosenCategory = 0
                 while(chosenCategory != 1 && chosenCategory != 2){
@@ -112,14 +112,15 @@ raceLoop: while(true){
             grandPrix.add(vehicle: vehicle)
         
         case 2:
+                grandPrix.displayVehicles()
+            
+        case 3:
             if grandPrix.raceVehicles.count == 0{
                 print("No vehicle in the race")
             }
             else{
-                grandPrix.displayVehicles()
+                grandPrix.displayRaceVehicles()
             }
-        case 3:
-            grandPrix.displayRaceVehicles()
         case 4:
             print("Choose the vehicle to add to the race")
             grandPrix.displayAvailableVehicles()
