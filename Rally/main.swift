@@ -154,7 +154,8 @@ raceLoop: while(true){
             
             print("\nChoose the length of the race in kilometers (km)")
             let length = Int(readLine()!)!
-            grandPrix.race(length: length)
+            grandPrix.setLength(length: length * 1000)
+            grandPrix.race()
             grandPrix.resetRace()
         case 8:
             grandPrix.resetRace()

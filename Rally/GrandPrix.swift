@@ -71,6 +71,15 @@ class GrandPrix : Rally {
         print("\nRandom vehicles added to the race")
     }
     
+    func checkAllFinished() -> Bool {
+        for vehicle in raceVehicles {
+            if vehicle.travelledDist < Double(length) && vehicle.fuel - vehicle.fuelConsumed > 0{
+                return false
+            }
+        }
+        return true
+    }
+    
     // function to reset the values for a new race
     func resetRace(){
         raceVehicles = Array<Vehicle>()
@@ -103,62 +112,55 @@ class GrandPrix : Rally {
     }
     
     // function that makes the vehicles race together. The length of the race is in kilometers and each loop of the function represents how many minutes passed in the race using the variable checkpoint
-    func race(length:Int) {
-        var finishedVehicles = Array<Vehicle>()
+    func race() {
         var winner = Vehicle()
         var count = 1
-        var allFinished = false
         
         print("\n------------- Race Starts --------------")
         
         loopRace: while(true){
-            allFinished = false
+            if(checkAllFinished()){
+                break loopRace
+            }
             
             print("\n------- Checkpoint \(count) -------")
             
             for vehicle in raceVehicles {
-                if(Double(length*1000) <= vehicle.travelledDist){
-                    allFinished = true
-                }else if vehicle.fuel - vehicle.fuelConsumed > 0 {
-                    vehicle.travelledDist += vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
-                    vehicle.calculateConsumption(time: checkPoint)
-                }                
+                if(Double(length) > vehicle.travelledDist){
+                    if(vehicle.fuel - vehicle.fuelConsumed > 0) {
+                        vehicle.travelledDist += vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
+                        vehicle.calculateConsumption(time: checkPoint)
+                    }
+                }else if(winner.travelledDist == 0){
+                    winner = vehicle
+                }
                 print(vehicle.displayRaceDetails())
             }
-            
-            if(allFinished){
-                break loopRace
-            }
-            
             count += 1
         }
         
         print("\n-------- Results --------")
         
+        var checkFinish = false
+        
         for vehicle in raceVehicles {
             if(vehicle.fuel - vehicle.fuelConsumed > 0){
-                finishedVehicles.append(vehicle)
-                if(vehicle.travelledDist > winner.travelledDist){
-                    winner = vehicle
-                }
+                checkFinish = true
+                break
             }
         }
         
-        if(finishedVehicles.count > 0){
-            for vehicle in finishedVehicles {
+        if(checkFinish){
+            for vehicle in raceVehicles {
                 if(vehicle === winner){
                     print("\(vehicle.displayRaceDetails()) | won the race")
+                }else if(vehicle.fuel - vehicle.fuelConsumed == 0){
+                    print("\(vehicle.displayRaceDetails()) | ran out of fuel")
                 }else{
                     print("\(vehicle.displayRaceDetails()) | finished the race")
                 }
             }
-            
-            for vehicle in raceVehicles {
-                if(!finishedVehicles.contains(where: {$0.name == vehicle.name})){
-                    print("\(vehicle.displayRaceDetails()) | ran out of fuel")
-                }
-            }
-        } else{
+        }else{
             print("\nAll vehicles failed to finish the rally")
         }        
     }
