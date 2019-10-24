@@ -130,6 +130,7 @@ raceLoop: while(true){
                 print("Wrong vehicle number")
             }else{
                 grandPrix.addToRace(vehicle: (grandPrix.vehicles[vehicleChosen-1]))
+                print("\((grandPrix.vehicles[vehicleChosen-1]).displayVehicle()) is added successfully to the race")
             }
         case 5:
             if grandPrix.raceVehicles.count < 2{
