@@ -103,7 +103,7 @@ raceLoop: while(true){
             case 2:
                 print("\nEnter Vehicle Name: ")
                 name = readLine()
-                print("\nEnter Vehicle Maximum Speed (km/hr): ")
+                print("\nEnter Vehicle Maximum Speed (km/h): ")
                 maxSpeed = Double(readLine()!)
                 print("\nEnter Vehicle Weight (kg): ")
                 weight = Int(readLine()!)

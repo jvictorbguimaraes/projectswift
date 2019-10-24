@@ -72,7 +72,7 @@ class Vehicle {
     }
     
     func displayRaceDetails() -> String{
-        return ("\(name) -> Distance Travelled: \((travelledDist/1000).rounded()) km, Fuel Left: \((fuel - fuelConsumed).rounded()) l")
+        return ("\(name) -> Distance Travelled: \((travelledDist/1000).rounded()) km, Fuel Left: \((round((fuel - fuelConsumed)*100)/100)) l")
     }
     
     //tool to check performance of the car

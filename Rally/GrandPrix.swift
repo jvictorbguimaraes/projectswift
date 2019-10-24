@@ -117,6 +117,10 @@ class GrandPrix : Rally {
         var count = 1
         
         print("\n------------- Race Starts --------------")
+        for vehicle in raceVehicles {
+             print(vehicle.displayRaceDetails())
+        }
+        
         
         loopRace: while(true){
             if(checkAllFinished()){
