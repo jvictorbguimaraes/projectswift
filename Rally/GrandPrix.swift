@@ -51,19 +51,22 @@ class GrandPrix : Rally {
             raceVehicles.append(vehicle)
         }else{
             print("\nVehicle is not in the list")
-        }
-        print("\nVehicle added to the race")
+        }        
+        print("\n4\(vehicle.name) added successfully to the race")
     }
     
     // function to add random vehicles to the race
     func addRandomVehicles() {
-        let num = Int.random(in: 1 ... vehicles.count)
-        var count = 1
+        let num = Int.random(in: 2 ... vehicles.count)
+        var count = 0
         raceVehicles = Array<Vehicle>()
         
         while(count < num){
-            raceVehicles.append(vehicles.randomElement()!)
-            count += 1
+            let vehicle = vehicles.randomElement()!
+            if(!raceVehicles.contains(where: {$0.name == vehicle.name})){
+                raceVehicles.append(vehicle)
+                count += 1
+            }
         }
         print("\nRandom vehicles added to the race")
     }
@@ -109,7 +112,7 @@ class GrandPrix : Rally {
         
         print("\n------------- Race Starts --------------")
         
-        while(distanceTravelled < length){   
+        while(distanceTravelled < length){
             if(checkPoint * count > length){
                 nextCheckPoint = checkPoint * count - length
             }else{

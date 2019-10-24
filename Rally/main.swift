@@ -137,12 +137,7 @@ raceLoop: while(true){
             print("\nChoose the vehicle to add to the race using its number")
             grandPrix.displayAvailableVehicles()
             let vehicleChosen = Int(readLine()!)!
-            if(vehicleChosen > grandPrix.vehicles.count || vehicleChosen < 0){
-                print("\nWrong vehicle number")
-            }else{
-                grandPrix.addToRace(vehicle: (grandPrix.vehicles[vehicleChosen-1]))
-                print("\((grandPrix.vehicles[vehicleChosen-1]).displayVehicle()) is added successfully to the race")
-            }
+            grandPrix.addToRace(vehicle: (grandPrix.vehicles[vehicleChosen-1]))
         case 5:
             grandPrix.addRandomVehicles()
         case 6:
