@@ -24,11 +24,11 @@ var grandPrix = GrandPrix()
 
 //adding a few default vehicles
 var vehiclesList = Array<Vehicle>()
-let v1 = Car(name: "Ferrari", maxSpeed: 300, weight: 800, fuel: 45, category: "Race Car")
+let v1 = Car(name: "Ferrari", maxSpeed: 300, weight: 800, fuel: 70, category: "Race Car")
 v1.performance()
-let v2 = Car(name: "Mustang", maxSpeed: 250, weight: 600, fuel: 50, category: "Touring Car")
+let v2 = Car(name: "Mustang", maxSpeed: 250, weight: 600, fuel: 67, category: "Touring Car")
 v2.performance()
-let v3 = Car(name: "Lamborghini", maxSpeed: 280, weight: 870, fuel: 44, category: "Race Car")
+let v3 = Car(name: "Lamborghini", maxSpeed: 280, weight: 870, fuel: 72, category: "Race Car")
 v3.performance()
 let v4 = Moto(name: "Kawasaki", maxSpeed: 320, weight: 320, fuel: 67, sidecar: false)
 v4.performance()
@@ -113,7 +113,7 @@ raceLoop: while(true){
                 sidecar = Bool(readLine()!)
                 vehicle = Moto(name:name!,maxSpeed: maxSpeed!,weight: weight!,fuel:fuel!,sidecar: sidecar!)
             default:
-                print("Wrong choice")
+                print("\nWrong choice")
                 continue raceLoop
             }
             
@@ -152,7 +152,7 @@ raceLoop: while(true){
                 break
             }
             
-            print("\nChoose the length of the race in minutes")
+            print("\nChoose the length of the race in kilometers (km)")
             let length = Int(readLine()!)!
             grandPrix.race(length: length)
             grandPrix.resetRace()
