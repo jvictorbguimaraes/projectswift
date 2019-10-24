@@ -141,6 +141,7 @@ raceLoop: while(true){
                 print("\nWrong vehicle number")
             }else{
                 grandPrix.addToRace(vehicle: (grandPrix.vehicles[vehicleChosen-1]))
+                print("\((grandPrix.vehicles[vehicleChosen-1]).displayVehicle()) is added successfully to the race")
             }
         case 5:
             grandPrix.addRandomVehicles()
