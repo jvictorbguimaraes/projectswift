@@ -20,6 +20,7 @@ var weight: Int?
 var fuel: Double?
 var category: String?
 var sidecar: Bool?
+
 var grandPrix = GrandPrix()
 
 //adding a few default vehicles
@@ -63,6 +64,7 @@ raceLoop: while(true){
     
     switch(option1){
         case 1:
+            
             print("Select Vehicle Type")
             print("1. Car")
             print("2. Motorcycle")
@@ -74,6 +76,13 @@ raceLoop: while(true){
             case 1:
                 print("Enter Vehicle Name: ")
                 name = readLine()
+                for i in vehiclesList
+                {
+                    if(i.name == name){
+                        print("You can't enter same name in car list.")
+                        continue raceLoop
+                    }
+                }
                 print("Enter Vehicle Maximum Speed (km/hr): ")
                 maxSpeed = Double(readLine()!)
                 print("Enter Vehicle Weight (kg): ")
@@ -94,6 +103,13 @@ raceLoop: while(true){
             case 2:
                 print("Enter Vehicle Name: ")
                 name = readLine()
+                for i in vehiclesList
+                {
+                    if(i.name == name){
+                        print("You can't enter same name in car list.")
+                        continue raceLoop
+                    }
+                }
                 print("Enter Vehicle Maximum Speed (km/hr): ")
                 maxSpeed = Double(readLine()!)
                 print("Enter Vehicle Weight (kg): ")
