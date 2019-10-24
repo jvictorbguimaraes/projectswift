@@ -28,7 +28,7 @@ class Moto : Vehicle{
     
     //function to display the vehicle details
     override func displayVehicle() -> String{
-        return ("\(name), Max Speed: \(maxSpeed)km/h, Weight: \(weight)kg, Sidecar: \(sidecar)")
+        return ("\(name), Max Speed: \(maxSpeed)km/h, Weight: \(weight)kg, Fuel: \(fuel), Sidecar: \(sidecar)")
     }
 }
 

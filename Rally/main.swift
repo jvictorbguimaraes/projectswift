@@ -25,17 +25,17 @@ var grandPrix = GrandPrix()
 //adding a few default vehicles
 var vehiclesList = Array<Vehicle>()
 let v1 = Car(name: "Ferrari", maxSpeed: 300, weight: 800, fuel: 45, category: "Race Car")
-v1.performance(maxSpeed: 300, weight: 800)
+v1.performance()
 let v2 = Car(name: "Mustang", maxSpeed: 250, weight: 600, fuel: 50, category: "Touring Car")
-v2.performance(maxSpeed: 250, weight: 600)
+v2.performance()
 let v3 = Car(name: "Lamborghini", maxSpeed: 280, weight: 870, fuel: 44, category: "Race Car")
-v3.performance(maxSpeed: 280, weight: 870)
+v3.performance()
 let v4 = Moto(name: "Kawasaki", maxSpeed: 320, weight: 320, fuel: 67, sidecar: false)
-v4.performance(maxSpeed: 320, weight: 320)
+v4.performance()
 let v5 = Moto(name: "Yamaha", maxSpeed: 230, weight: 450, fuel: 87, sidecar: true)
-v5.performance(maxSpeed: 230, weight: 450)
+v5.performance()
 let v6 = Moto(name: "Honda", maxSpeed: 300, weight: 280, fuel: 77, sidecar: false)
-v6.performance(maxSpeed: 300, weight: 280)
+v6.performance()
 
 vehiclesList.append(v1)
 vehiclesList.append(v2)
@@ -49,21 +49,24 @@ print("Welcome to Grand Prix")
 
 //display option menu
 raceLoop: while(true){
-    print("------------------")
+    print("\n-----------------------------------------------------")
     print("Select a option to proceed or any other value to exit")
     print("1. Create a new vehicle")
-    print("2. Display available vehicle list")
+    print("2. Display all vehicles")
     print("3. Display vehicles in the race")
     print("4. Add a car/motorcycle to the race")
-    print("5. Start race")
-    print("6. Compare two available vehicles")
+    print("5. Add random vehicles to the race")
+    print("6. Get the vehicle in the race who has the better performance")
+    print("7. Start race")
+    print("8. Reset race")
+    
     let opt1:String? = readLine()
     option1 = Int (opt1!)!
     let vehicle: Vehicle
     
     switch(option1){
         case 1:
-            print("Select Vehicle Type")
+            print("\nSelect Vehicle Type")
             print("1. Car")
             print("2. Motorcycle")
             
@@ -72,17 +75,23 @@ raceLoop: while(true){
             
             switchOption2: switch(option2){
             case 1:
-                print("Enter Vehicle Name: ")
-                name = readLine()
-                print("Enter Vehicle Maximum Speed (km/hr): ")
+                insertName: while(true){
+                    print("\nEnter Vehicle Name: ")
+                    name = readLine()!
+                    if(!grandPrix.findByCarName(name: name!)){
+                        break insertName
+                    }
+                    print("\nVehicles can't have the same name, type a different one")
+                }
+                print("\nEnter Vehicle Maximum Speed (km/h): ")
                 maxSpeed = Double(readLine()!)
-                print("Enter Vehicle Weight (kg): ")
+                print("\nEnter Vehicle Weight (kg): ")
                 weight = Int(readLine()!)
-                print("Enter Vehicle Fuel Level (litres): ")
+                print("\nEnter Vehicle Fuel Level (litres): ")
                 fuel = Double(readLine()!)
                 var chosenCategory = 0
                 while(chosenCategory != 1 && chosenCategory != 2){
-                    print("Enter Car Category: \n1: Race Car \n2: Touring Car")
+                    print("\nEnter Car Category: \n1: Race Car \n2: Touring Car")
                     chosenCategory = Int(readLine()!)!
                 }
                 if(chosenCategory == 1){
@@ -92,15 +101,15 @@ raceLoop: while(true){
                 }
                 vehicle = Car(name:name!,maxSpeed: maxSpeed!,weight: weight!,fuel:fuel!,category: category!)
             case 2:
-                print("Enter Vehicle Name: ")
+                print("\nEnter Vehicle Name: ")
                 name = readLine()
-                print("Enter Vehicle Maximum Speed (km/hr): ")
+                print("\nEnter Vehicle Maximum Speed (km/hr): ")
                 maxSpeed = Double(readLine()!)
-                print("Enter Vehicle Weight (kg): ")
+                print("\nEnter Vehicle Weight (kg): ")
                 weight = Int(readLine()!)
-                print("Enter Vehicle Fuel Level (litres): ")
+                print("\nEnter Vehicle Fuel Level (litres): ")
                 fuel = Double(readLine()!)
-                print("Enter if Motorcyle has sidecar(true/false): ")
+                print("\nEnter if Motorcyle has sidecar(true/false): ")
                 sidecar = Bool(readLine()!)
                 vehicle = Moto(name:name!,maxSpeed: maxSpeed!,weight: weight!,fuel:fuel!,sidecar: sidecar!)
             default:
@@ -108,64 +117,53 @@ raceLoop: while(true){
                 continue raceLoop
             }
             
+            // calculating vehicle performance
+            vehicle.performance()
+            
             //Adding the vehicle to the vehicle list
             grandPrix.add(vehicle: vehicle)
-            print("Vehicle added successfully to the list of available vehicles")
+            print("\nVehicle added successfully to the list of vehicles")
         
         case 2:
-                grandPrix.displayVehicles()
-            
+                grandPrix.displayVehicles()            
         case 3:
             if grandPrix.raceVehicles.count == 0{
-                print("No vehicle in the race")
+                print("\nNo vehicle in the race")
             }
             else{
                 grandPrix.displayRaceVehicles()
             }
         case 4:
-            print("Choose the vehicle to add to the race")
+            print("\nChoose the vehicle to add to the race using its number")
             grandPrix.displayAvailableVehicles()
             let vehicleChosen = Int(readLine()!)!
             if(vehicleChosen > grandPrix.vehicles.count || vehicleChosen < 0){
-                print("Wrong vehicle number")
+                print("\nWrong vehicle number")
             }else{
                 grandPrix.addToRace(vehicle: (grandPrix.vehicles[vehicleChosen-1]))
             }
         case 5:
+            grandPrix.addRandomVehicles()
+        case 6:
+            grandPrix.betterPerformance(list: grandPrix.getRaceVehicles())
+        case 7:
             if grandPrix.raceVehicles.count < 2{
-                print("Need at least 2 vehicles in the race")
+                print("\nNeed at least 2 vehicles in the race")
                 break
             }
             else if(!grandPrix.check()){
-                print("Not a GrandPrix")
+                print("\nNot a GrandPrix")
                 break
             }
             
-            print("Choose the length of the race in minutes")
+            print("\nChoose the length of the race in minutes")
             let length = Int(readLine()!)!
             grandPrix.race(length: length)
             grandPrix.resetRace()
-        case 6:
-            print("Enter first vehicle name")
-            let n1 = readLine()
-            print("Enter second vehicle name")
-            let n2 = readLine()
-            var v1 = Vehicle()
-            var v2 = Vehicle()
-            let vehicles = grandPrix.getVehicles()
-            for item in vehicles{
-                if item.getName() == n1 {
-                    v1 = Vehicle(name: item.name, maxSpeed: item.getMaxSpeed(), weight: item.getWeight(), fuel: item.getFuel())
-                }
-                else if item.getName() == n2{
-                    v2 = Vehicle(name: item.name, maxSpeed: item.getMaxSpeed(), weight: item.getWeight(), fuel: item.getFuel())
-                }
-            }
-            let betterVehicle = grandPrix.better(v1: v1, v2: v2)
-            print("The better vehicle is : \(betterVehicle.name)")
-            
-                break
+        case 8:
+            grandPrix.resetRace()
         default:
             break raceLoop
     }
 }
+

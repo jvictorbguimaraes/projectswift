@@ -68,7 +68,7 @@ class Vehicle {
     }
     
     func displayVehicle() -> String{
-        return ("\(name), Max Speed: \(maxSpeed)km/h, Weight: \(weight)kg")
+        return ("\(name) -> Max Speed: \(maxSpeed)km/h, Weight: \(weight)kg, Fuel: \(fuel)")
     }
     
     func displayRaceDetails() -> String{
@@ -76,20 +76,16 @@ class Vehicle {
     }
     
     //tool to check performance of the car
-    func performance(maxSpeed: Double, weight: Int) {
-        //let ratio = maxSpeed / Double(weight)
-        //let estimation = "The vehicle performance is: \(ratio)"
-        
-        let f = GrandPrix()
-        
+    func performance() {
+        let f = GrandPrix()        
         let w = f.kgtolbs(kg: weight)
         let s = f.kmtoMiles(km: maxSpeed)
         horsePower = w * pow((s / 234),3.0)
     }
     
-    //On average, a vehicle about 0.4 pounds of fuel per hour for each unit of horsepower.
+    //On average, a vehicle about 0.15 pounds of fuel per hour for each unit of horsepower.
     func calculateConsumption(time: Int) {
-        let consumption = ((horsePower * 0.4) / 2.2) * Double(time) / 60
+        let consumption = ((horsePower * 0.15) / 2.2) * Double(time) / 60
         
         if fuel - fuelConsumed - consumption < 0 {
             fuelConsumed = fuel
