@@ -28,7 +28,7 @@ let v1 = Car(name: "Ferrari", maxSpeed: 300, weight: 800, fuel: 70, category: "R
 v1.performance()
 let v2 = Car(name: "Mustang", maxSpeed: 250, weight: 600, fuel: 67, category: "Touring Car")
 v2.performance()
-let v3 = Car(name: "Lamborghini", maxSpeed: 280, weight: 870, fuel: 72, category: "Race Car")
+let v3 = Car(name: "Lamborghini", maxSpeed: 280, weight: 870, fuel: 73, category: "Race Car")
 v3.performance()
 let v4 = Moto(name: "Kawasaki", maxSpeed: 320, weight: 320, fuel: 67, sidecar: false)
 v4.performance()

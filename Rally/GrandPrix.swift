@@ -132,12 +132,12 @@ class GrandPrix : Rally {
             for vehicle in raceVehicles {
                 if(Double(length) > vehicle.travelledDist){
                     if(vehicle.fuel - vehicle.fuelConsumed > 0) {
-                        var dist = vehicle.travelledDist + vehicle.maxSpeed * 1000 / 60 * Double(checkPoint)
+                        let strength = vehicle.calculateConsumption(time: checkPoint)
+                        var dist = vehicle.travelledDist + vehicle.maxSpeed * 1000 / 60 * Double(checkPoint) * strength
                         if(dist > Double(length)){
                             dist = Double(length)
                         }
-                        vehicle.travelledDist = dist
-                        vehicle.calculateConsumption(time: checkPoint)
+                        vehicle.travelledDist = dist                        
                     }
                 }
                 
